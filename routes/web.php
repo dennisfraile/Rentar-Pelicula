@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::resource('peliculas','app\Http\Controllers\PeliculaController');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
     return view('dashboard.index');
 })->name('dash');

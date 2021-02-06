@@ -19,6 +19,12 @@ Route::get('/', function () {
 
 Route::resource('peliculas','app\Http\Controllers\PeliculaController');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
-    return view('dashboard.index');
-})->name('dash');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource(name:'tasks', controller:\App\Http\Controllers\TasksController::class);
+
+    Route::resource(name:'users', controller:\App\Http\Controllers\UsersController::class);
+});
+
